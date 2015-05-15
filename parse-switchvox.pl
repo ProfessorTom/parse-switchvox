@@ -6,3 +6,9 @@
 #    into variables to be passed in JSON format to the slack server as a POST
 #
 #
+# the main channel is viewed by everyone
+#
+slack_api_url="https://hooks.slack.com/services"
+main_channel_url="/T04SM9RP9/B04SWH2NM/B38qFo36HvoAtXpk2vuxQk8E/"
+
+# add other channels, here, as needed
