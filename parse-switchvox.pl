@@ -81,9 +81,9 @@ print "</head>";
 print "<body>";
 print "<h2>Values</h2>";
 print "<p>$buffer</p>"
-
+print "<p>"
 foreach $pair (@pairs) {
-    printf("%s\:%s\n",$pair);
+    printf ("%s\n",$pair);
 }
 print "</body>";
 print "</html>";
