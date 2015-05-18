@@ -54,11 +54,12 @@ $general_channel = "/T04SM9RP9/B04SWH2NM/B38qFo36HvoAtXpk2vuxQk8E/";
 #SCRIPT_FILENAME - combination of the previous two strings - the full path from root to file name
 
 # initialize some local variables
-local ($buffer, @pairs, $pair, $name, $value, %FORM);
+local ($buffer, @pairs, $pair, $name, $value, %FORM, $req);
 
 # Read in the passed values from the environment
-$ENV{'REQUEST_METHOD'} =~ tr/a-z/A-Z/; # convert the text to all uppercase
-if ($ENV{'REQUEST_METHOD'} eq "GET") # if the method was a GET (we hope), then…
+$req = $ENV{'REQUEST_METHOD'} =~ tr/a-z/A-Z/; # convert the text to all uppercase
+
+if ($req eq "GET") # if the method was a GET (we hope), then…
 {
     $buffer = $ENV{'QUERY_STRING'}; # read the values from the incoming URL
 }
