@@ -57,7 +57,7 @@ $general_channel = "/T04SM9RP9/B04SWH2NM/B38qFo36HvoAtXpk2vuxQk8E/";
 local ($buffer, @pairs, $pair, $name, $value, %FORM, $req);
 
 # Read in the passed values from the environment
-$req = $ENV{'REQUEST_METHOD'} =~ tr/a-z/A-Z/; # convert the text to all uppercase
+$req = $ENV{'REQUEST_METHOD'} # =~ tr/a-z/A-Z/; # convert the text to all uppercase
 
 if ($req eq "GET") # if the method was a GET (we hope), then…
 {
@@ -66,7 +66,7 @@ if ($req eq "GET") # if the method was a GET (we hope), then…
 
 # Split information into name/value pairs
 @pairs = split(/&/, $buffer); # break out each value pair into a member of the @pairs array
-# so $pair(1) would be something=value
+# so $pair[1] would be something=value
 foreach $pair (@pairs) # roll through the list of values
 {
     ($name, $value) = split(/=/, $pair); # create an array pair
