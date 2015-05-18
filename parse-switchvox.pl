@@ -62,6 +62,7 @@ if ($ENV{'REQUEST_METHOD'} eq "GET") # if the method was a GET (we hope), thenâ€
 {
     $buffer = $ENV{'QUERY_STRING'}; # read the values from the incoming URL
 }
+
 # Split information into name/value pairs
 @pairs = split(/&/, $buffer); # break out each value pair into a member of the @pairs array
 # so $pair(1) would be something=value
@@ -78,6 +79,8 @@ print "<title>values</title>";
 print "</head>";
 print "<body>";
 print "<h2>Values</h2>";
+print "<p>$buffer</p>"
+
 foreach $pair (@pairs) {
     printf("%s\:%s\n",$pair);
 }
