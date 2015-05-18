@@ -83,7 +83,7 @@ print "<h2>Values</h2>";
 print "<p>$buffer</p>";
 print "<p>";
 foreach $pair (@pairs) {
-    printf ("%s\n",$pair);
+    print $pair."<br>\n";
 }
 print "</body>";
 print "</html>";
