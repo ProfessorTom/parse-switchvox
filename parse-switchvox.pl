@@ -85,7 +85,7 @@ foreach $pair (@pairs) # roll through the list of values
     
     print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
 }
-print "</table>"
+print "</table>";
 # at this point, all of the values have been placed into the same variables they were paired by (in lower case).
 #
 
