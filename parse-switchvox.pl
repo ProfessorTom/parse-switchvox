@@ -82,7 +82,7 @@ print "<body>";
 print "<h2>Values</h2>";
 # print "<p>$buffer</p>";
 print "<p>";
-print $pair["caller_id_name"];
+print $pair[1];
 foreach $pair (@pairs) {
     print $pair."<br>\n";
 }
