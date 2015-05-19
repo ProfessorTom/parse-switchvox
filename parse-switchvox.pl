@@ -76,14 +76,16 @@ print "</head>";
 print "<body>";
 print "<h2>Values</h2>";
 print "<p>";
+print "<table border=0>";
 
 foreach $pair (@pairs) # roll through the list of values
 {
     ($name, $value) = split(/=/, $pair); # create an array pair
     $$name=$value;
-    print "$name"."\t".$value."<br>\n";
+    
+    print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
 }
-
+print "</table>"
 # at this point, all of the values have been placed into the same variables they were paired by (in lower case).
 #
 
