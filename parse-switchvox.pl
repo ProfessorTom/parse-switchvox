@@ -71,7 +71,11 @@ foreach $pair (@pairs) # roll through the list of values
 {
     ($name, $value) = split(/=/, $pair); # create an array pair
     $$name=$value;
+    print "$$name".$value."<br>\n";
 }
+
+# at this point, all of the values have been placed into the same variables they were paired by (in lower case).
+#
 
 # so that we can see the results on the web browser (during testing)
 print "Content-type:text/html\r\n\r\n";
@@ -82,6 +86,6 @@ print "</head>";
 print "<body>";
 print "<h2>Values</h2>";
 print "<p>";
-print $caller_id_name;
+
 print "</body>";
 print "</html>";
