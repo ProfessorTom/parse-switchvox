@@ -17,7 +17,7 @@ $slack_api_url = "https://hooks.slack.com/services";
 # Define the channels to which messages will be sent.
 # the <name>_channel will be appended to the slack_api_url, defined above
 # for testing, this channel has been defined for novation systems general channel
-$general_channel = "/T04SM9RP9/B04SWH2NM/B38qFo36HvoAtXpk2vuxQk8E/";
+$general_channel = "/T04SM9RP9/B04SWH2NM/B38qFo36HvoAtXpk2vuxQk8E";
 
 # read all channels from a configuration file. That way, the config file can be updated without
 # having to change this source code.
@@ -96,7 +96,7 @@ print "</html>";
 
 my $ua = LWP::UserAgent->new;
 
-my $server_endpoint = "https://hooks.slack.com/services/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";
+my $server_endpoint = "$slack_api_url"."$general_channel";
 
 # set custom HTTP request header fields
 my $request = HTTP::Request->new(POST => $server_endpoint);
