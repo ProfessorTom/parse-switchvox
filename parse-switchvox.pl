@@ -112,7 +112,7 @@ if ($resp->is_success) {
     print "Received reply: $message\n";
 }
 else {
-    print "HTTP POST error code: ", $resp->code, "\n";
-    print "HTTP POST error message: ", $resp->message, "\n";
+    print "HTTP POST error code: ", $resp->code, "<br>\n";
+    print "HTTP POST error message: ", $resp->message, "<br>\n";
 }
 
