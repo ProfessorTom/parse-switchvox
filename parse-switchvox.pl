@@ -7,6 +7,7 @@
 #
 # add some required perl modules
 # require lwp;
+use LWP::UserAgent;
 
 
 # the base URL defines the web server to whom to send the JSON messages
@@ -92,3 +93,27 @@ print "</table>";
 
 print "</body>";
 print "</html>";
+
+my $ua = LWP::UserAgent->new;
+
+my $server_endpoint = "$slack_api_url"."$general_channel";
+
+# set custom HTTP request header fields
+my $request = HTTP::Request->new(POST => $server_endpoint);
+$request->header('content-type' => 'application/json');
+$request->header('x-auth-token' => 'kfksj48sdfj4jd9d');
+
+# add POST data to HTTP request body
+my $post_data = '{ "text": "test" }';
+$request->content($post_data);
+
+my $resp = $ua->request($request);
+if ($resp->is_success) {
+    my $message = $resp->decoded_content;
+    print "Received reply: $message\n";
+}
+else {
+    print "HTTP POST error code: ", $resp->code, "\n";
+    print "HTTP POST error message: ", $resp->message, "\n";
+}
+
