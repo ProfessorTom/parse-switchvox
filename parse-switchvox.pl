@@ -81,7 +81,7 @@ foreach $pair (@pairs) # roll through the list of values
 {
     ($name, $value) = split(/=/, $pair); # create an array pair
     $$name=$value;
-    print "$$name".$value."<br>\n";
+    print "$name"."\t".$value."<br>\n";
 }
 
 # at this point, all of the values have been placed into the same variables they were paired by (in lower case).
