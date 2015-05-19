@@ -96,7 +96,7 @@ print "</html>";
 
 my $ua = LWP::UserAgent->new;
 
-my $server_endpoint = "$https://hooks.slack.com/services/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";
+my $server_endpoint = "https://hooks.slack.com/services/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/";
 
 # set custom HTTP request header fields
 my $request = HTTP::Request->new(POST => $server_endpoint);
