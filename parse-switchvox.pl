@@ -70,6 +70,7 @@ if ($req eq "GET") # if the method was a GET (we hope), then…
 foreach $pair (@pairs) # roll through the list of values
 {
     ($name, $value) = split(/=/, $pair); # create an array pair
+    $($name)=$value;
 }
 
 # so that we can see the results on the web browser (during testing)
@@ -80,11 +81,7 @@ print "<title>values</title>";
 print "</head>";
 print "<body>";
 print "<h2>Values</h2>";
-# print "<p>$buffer</p>";
 print "<p>";
-print $pair;
-foreach $pair (@pairs) {
-    print $pair."<br>\n";
-}
+print $caller_id_name;
 print "</body>";
 print "</html>";
