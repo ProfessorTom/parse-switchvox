@@ -101,7 +101,6 @@ my $server_endpoint = "$slack_api_url"."$general_channel";
 # set custom HTTP request header fields
 my $request = HTTP::Request->new(POST => $server_endpoint);
 $request->header('content-type' => 'application/json');
-$request->header('x-auth-token' => 'kfksj48sdfj4jd9d');
 
 # add POST data to HTTP request body
 my $post_data = '{ "text": "test" }';
