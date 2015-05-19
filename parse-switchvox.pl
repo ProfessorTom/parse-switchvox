@@ -70,7 +70,7 @@ if ($req eq "GET") # if the method was a GET (we hope), then…
 foreach $pair (@pairs) # roll through the list of values
 {
     ($name, $value) = split(/=/, $pair); # create an array pair
-    $($name)=$value;
+    $$name=$value;
 }
 
 # so that we can see the results on the web browser (during testing)
