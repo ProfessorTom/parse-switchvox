@@ -26,7 +26,7 @@ sub postdata { # call with postdata(api,channel,message)
     $request->header('content-type' => 'application/json'); # header data to define
     
     # add POST data to HTTP request body
-    my $post_data = '{"channel":"' . $channel . '","icon-emoji":":children_crossing:","text":"' . $message . '" }';
+    my $post_data = '{"channel":"' . $channel . '","username":"gitclone","icon_emoji":":children_crossing:","text":"' . $message . '" }';
 
     #DEBUG
     print $post_data."<br>\n";
@@ -129,7 +129,7 @@ foreach $pair (@pairs) # roll through the list of values
 #
 
 # now, let's do some logical routing of this information
-$channel = "#general";
+$channel = "#programming";
 $message = "TEST-> Testing, Testing, is this thing on? ";
 
 
