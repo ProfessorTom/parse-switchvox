@@ -108,30 +108,33 @@ if ($req eq "GET") # if the method was a GET (we hope), then…
 @pairs = split(/&/, $buffer); # break out each value pair into a member of the @pairs array
 
 # so that we can see the results on the web browser (during testing)
-print "Content-type:text/html\r\n\r\n";
-print "<html>";
-print "<head>";
-print "<title>values</title>";
-print "</head>";
-print "<body>";
-print "<h2>Values</h2>";
-print "<p>";
-print "<table border=0>";
+#DEBUG print "Content-type:text/html\r\n\r\n";
+#DEBUG print "<html>";
+#DEBUG print "<head>";
+#DEBUG print "<title>values</title>";
+#DEBUG print "</head>";
+#DEBUG print "<body>";
+#DEBUG print "<h2>Values</h2>";
+#DEBUG print "<p>";
+#DEBUG print "<table border=0>";
 
 foreach $pair (@pairs) # roll through the list of values
 {
     ($name, $value) = split(/=/, $pair); # create an array pair
     $$name=$value;
     
-    print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
+    #DEBUG print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
 }
-print "</table>";
+#DEBUG print "</table>";
 # at this point, all of the values have been placed into the same variables they were paired by (in lower case).
 #
 
-postdata($api,"#programming","this is a test");
+# now, let's do some logical routing of this information
 
-print "</body>";
-print "</html>";
+
+postdata($api,"#programming","$event_type");
+
+#DEBUG print "</body>";
+#DEBUG print "</html>";
 
 
