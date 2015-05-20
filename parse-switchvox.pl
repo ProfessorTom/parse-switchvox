@@ -17,20 +17,23 @@ sub postdata { # call with postdata(api,channel,message)
     my $api = shift;
     my $message = shift;
     
-    print $channel . "<br>\n"; # debug output
-    print $api . "<br>\n"; ##
-    print $message . "<br>\n"; ##
+    #    print $channel . "<br>\n"; # debug output
+    #print $api . "<br>\n"; ##
+    #print $message . "<br>\n"; ##
     
     my $handle = LWP::UserAgent->new; # create a new object to reference
     
     my $server_endpoint = "$api"."$channel"; # define the full URL to which to POST
+    print $server_endpoint."<br>\n";
     
     # set custom HTTP request header fields
     my $request = HTTP::Request->new(POST => $server_endpoint); # object to add  data
     $request->header('content-type' => 'application/json'); # header data to define
+    print $request->header."<br>\n";
     
     # add POST data to HTTP request body
     my $post_data = '{' . "text" . ':' . $message . '}'; # a string to use for the POST
+    print $post_data."<br>\n";
     
     # actually connect to the URL and POST the data
     $request->content($post_data);
