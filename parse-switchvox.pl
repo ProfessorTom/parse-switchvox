@@ -100,7 +100,7 @@ my $request = HTTP::Request->new(POST => $server_endpoint);
 $request->header('content-type' => 'application/json');
 
 # add POST data to HTTP request body
-my $post_data = '{ "text":  $value  , "channel" : "#programming" }';
+my $post_data = '{ "text":"$value"}';
 $request->content($post_data);
 
 my $resp = $ua->request($request);
