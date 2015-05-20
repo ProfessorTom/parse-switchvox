@@ -28,7 +28,7 @@ sub postdata { # call with postdata(api,channel,message)
     #DEBUG print $request->header."<br>\n";
     
     # add POST data to HTTP request body
-    my $post_data = '{' . "channel" . ':' . "#programming" . "," . "text" . ':' . $message . '}'; # a string to use for the POST
+    my $post_data = '{' . "channel" . ':' . "$channel" . "," . "text" . ':' . "$message" . '}'; # a string to use for the POST
     #DEBUG print $post_data."<br>\n";
     
     # actually connect to the URL and POST the data
@@ -54,6 +54,8 @@ $slack_api_url = "https://hooks.slack.com/services";
 # the <name>_channel will be appended to the slack_api_url, defined above
 # for testing, this channel has been defined for novation systems general channel
 $general_channel = "/T04SM9RP9/B04SWH2NM/B38qFo36HvoAtXpk2vuxQk8E";
+
+my $api = $slack_api_url . $general_channel;
 
 # read all channels from a configuration file. That way, the config file can be updated without
 # having to change this source code.
@@ -126,7 +128,7 @@ print "</table>";
 # at this point, all of the values have been placed into the same variables they were paired by (in lower case).
 #
 
-postdata($slack_api_url,$general_channel,"this is a test");
+postdata($api,"#programming","this is a test");
 
 print "</body>";
 print "</html>";
