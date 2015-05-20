@@ -21,16 +21,6 @@ sub postdata { # call with postdata(api,channel,message)
     #DEBUG
     print $server_endpoint."<br>\n";
     
-    system(/home/ec2-user/gitclone.sh);
-    if ( $? == -1 )
-    {
-        print "command failed: $!\n";
-    }
-    else
-    {
-        printf "command exited with value %d", $? >> 8;
-    }
-    
     # set custom HTTP request header fields
     my $request = HTTP::Request->new(POST => $server_endpoint); # object to add  data
     $request->header('content-type' => 'application/json'); # header data to define
@@ -158,6 +148,15 @@ if ( $buffer ne "" ) {
 
 postdata($api,$channel,$message);
 
+system(/home/ec2-user/gitclone.sh);
+     if ( $? == -1 )
+{
+     print "command failed: $!\n";
+}
+else
+{
+    printf "command exited with value %d", $? >> 8; 
+}
 
  print "</body>";
  print "</html>";
