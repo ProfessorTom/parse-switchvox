@@ -13,8 +13,8 @@ sub postdata { # call with postdata(api,channel,message)
     # channel is a string that represents the part of the URL that slack uses to determine the channel
     # api is the static value of the slack api URL
     # message is what you want to show up in the channel
-    my $channel = shift;
     my $api = shift;
+    my $channel = shift;
     my $message = shift;
     
     #    print $channel . "<br>\n"; # debug output
