@@ -135,7 +135,7 @@ $message = "$event_type: Testing, Testing, is this thing on?";
 
 if ( $event_type eq "incoming" ) {
     $channel = "#general";
-    $message = "*Incoming* *call* *from* *$caller_id_name* ($caller_id_number)";
+    $message = "*Incoming* *call* *from* *$caller_id_name* (_$caller_id_number _)";
     $message = $message . '\nNumber dialed:' . "$incoming_did";
 }
 
