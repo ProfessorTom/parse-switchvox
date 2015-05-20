@@ -91,9 +91,6 @@ print "</table>";
 #
 
 
-print "</body>";
-print "</html>";
-
 my $ua = LWP::UserAgent->new;
 
 my $server_endpoint = "$slack_api_url"."$general_channel";
@@ -115,4 +112,8 @@ else {
     print "HTTP POST error code: ", $resp->code, "<br>\n";
     print "HTTP POST error message: ", $resp->message, "<br>\n";
 }
+
+print "</body>";
+print "</html>";
+
 
