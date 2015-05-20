@@ -131,8 +131,10 @@ foreach $pair (@pairs) # roll through the list of values
 
 # now, let's do some logical routing of this information
 
-
-postdata($api,"#programming","$event_type");
+if $event_type eq "incoming" {
+    $channel = "#general";
+    $message = "Incoming call from $caller_id_name ($caller_id_number)";
+}
 
 #DEBUG print "</body>";
 #DEBUG print "</html>";
