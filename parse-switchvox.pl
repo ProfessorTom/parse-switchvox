@@ -17,36 +17,34 @@ sub postdata { # call with postdata(api,channel,message)
     my $api = shift;
     my $message = shift;
     
-    print $channel . "<br>\n";
-    print $api . "<br>\n";
-    print $message . "<br>\n";
+    print $channel . "<br>\n"; # debug output
+    print $api . "<br>\n"; ##
+    print $message . "<br>\n"; ##
     
-    if ($channel eq "" or $api eq "" or $message eq "" ) {
-        die "missing parameters";
-    }
+    my $handle = LWP::UserAgent->new; # create a new object to reference
     
-    my $handle = LWP::UserAgent->new;
-    
-    my $server_endpoint = "$api"."$channel";
+    my $server_endpoint = "$api"."$channel"; # define the full URL to which to POST
     
     # set custom HTTP request header fields
-    
-    my $request = HTTP::Request->new(POST => $server_endpoint);
-    $request->header('content-type' => 'application/json');
+    my $request = HTTP::Request->new(POST => $server_endpoint); # object to add  data
+    $request->header('content-type' => 'application/json'); # header data to define
     
     # add POST data to HTTP request body
-    my $post_data = '{' . "text" . ':' . $message . '}';
+    my $post_data = '{' . "text" . ':' . $message . '}'; # a string to use for the POST
+    
+    # actually connect to the URL and POST the data
     $request->content($post_data);
     
-    my $resp = $handle->request($request);
-    if ($resp->is_success) {
+    my $resp = $handle->request($request); # let's find out what happened
+    if ($resp->is_success) { # if the code was a 200 or a handful of 400's, then
         my $response = $resp->decoded_content;
-        print "Received reply: $response\n";
+        print "Received reply: $response\n"; # report the successful code
     }
     else {
-        print "HTTP POST error code: ", $resp->code, "<br>\n";
+        print "HTTP POST error code: ", $resp->code, "<br>\n"; # bad news! a 100, 300, 500 or some 400's
         print "HTTP POST error message: ", $resp->message, "<br>\n";
     }
+    
 }
 
 # the base URL defines the web server to whom to send the JSON messages
@@ -129,7 +127,7 @@ print "</table>";
 # at this point, all of the values have been placed into the same variables they were paired by (in lower case).
 #
 
-postdata($slack_api_url,$general_channel,"this is a test message");
+postdata($slack_api_url,$general_channel,$name."\t".$value);
 
 print "</body>";
 print "</html>";
