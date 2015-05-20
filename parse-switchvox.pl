@@ -96,11 +96,12 @@ my $ua = LWP::UserAgent->new;
 my $server_endpoint = "$slack_api_url"."$general_channel";
 
 # set custom HTTP request header fields
+
 my $request = HTTP::Request->new(POST => $server_endpoint);
 $request->header('content-type' => 'application/json');
 
 # add POST data to HTTP request body
-my $post_data = '{ "text":"$value"}';
+my $post_data = '{ "text":"@pairs"}';
 $request->content($post_data);
 
 my $resp = $ua->request($request);
