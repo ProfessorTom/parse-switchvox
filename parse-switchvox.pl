@@ -130,6 +130,9 @@ foreach $pair (@pairs) # roll through the list of values
 #
 
 # now, let's do some logical routing of this information
+$event_type = "undefined";
+$channel = "#general";
+$message = "I don't know what just happened";
 
 if $event_type eq "incoming" {
     $channel = "#general";
@@ -137,5 +140,6 @@ if $event_type eq "incoming" {
 }
 
 postdata($api,$channel,$message);
+
 #DEBUG print "</body>";
 #DEBUG print "</html>";
