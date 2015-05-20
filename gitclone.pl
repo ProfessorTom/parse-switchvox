@@ -130,7 +130,7 @@ foreach $pair (@pairs) # roll through the list of values
 # now, let's do some logical routing of this information
 $channel = "#general";
 $message = " TEST-> Testing, Testing, is this thing on? ";
-$message = $message . '"icon-emoji":":children_crossing:"';
+$message = $message . ',"icon-emoji":":children_crossing:"';
 
 # in this section, we will parse the message coming in and use the information to determine what needs to be sent in the message
 # magically read the incoming data
