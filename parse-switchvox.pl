@@ -99,7 +99,7 @@ $req = $ENV{'REQUEST_METHOD'}; # =~ tr/a-z/A-Z/; # convert the text to all upper
 if ($req eq "GET") # if the method was a GET (we hope), then…
 {
     $buffer = $ENV{'QUERY_STRING'}; # read the values from the incoming URL
-} else die "BAD FORMAT"
+} else die "BAD FORMAT";
 
 # Split information into name/value pairs
 @pairs = split(/&/, $buffer); # break out each value pair into a member of the @pairs array
