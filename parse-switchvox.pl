@@ -26,8 +26,6 @@ sub postdata { # call with postdata(api,channel,message)
     # set custom HTTP request header fields
     my $request = HTTP::Request->new(POST => $server_endpoint); # object to add  data
     $request->header('content-type' => 'application/json'); # header data to define
-    #DEBUG
-    print $request->header."<br>\n";
     
     # add POST data to HTTP request body
     my $post_data = '{' . "channel" . ':' . "$channel" . "," . "text" . ':' . "$message" . '}'; # a string to use for the POST
