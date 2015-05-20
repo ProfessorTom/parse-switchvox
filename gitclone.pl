@@ -146,7 +146,7 @@ if ( $buffer ne "" ) {
 
 my $user = "user: " . system("`whoami`");
 
-$message = $message . "\nUser = $user";
+$message = $message . " - User = $user";
 
 system("/home/ec2-user/gitclone.sh");
 if ( $? == -1 )
