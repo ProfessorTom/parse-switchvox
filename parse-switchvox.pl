@@ -21,7 +21,7 @@ sub postdata { # call with postdata(api,channel,message)
     print $api;
     print $message;
     
-    if ($channelstr eq "" or $slack_api eq "" or $message eq "" ) {
+    if ($channel eq "" or $api eq "" or $message eq "" ) {
         die "missing parameters";
     }
     
