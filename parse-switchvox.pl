@@ -130,9 +130,8 @@ foreach $pair (@pairs) # roll through the list of values
 #
 
 # now, let's do some logical routing of this information
-$event_type = "undefined";
 $channel = "#general";
-$message = "I don't know what just happened";
+$message = "$event_type: I have no idea what to do.";
 
 if ( $event_type eq "incoming" ) {
     $channel = "#general";
