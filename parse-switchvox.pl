@@ -28,7 +28,7 @@ sub postdata { # call with postdata(api,channel,message)
     #DEBUG print $request->header."<br>\n";
     
     # add POST data to HTTP request body
-    my $post_data = '{' . "text" . ':' . $message . '}'; # a string to use for the POST
+    my $post_data = '{' . "channel" . ':' . "#programming" . "," . "text" . ':' . $message . '}'; # a string to use for the POST
     #DEBUG print $post_data."<br>\n";
     
     # actually connect to the URL and POST the data
