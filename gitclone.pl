@@ -145,18 +145,18 @@ if ( $buffer ne "" ) {
 # contents with the new ones.
 
 # add channel icon
-
-postdata($api,$channel,$message);
-
 system(/home/ec2-user/gitclone.sh);
-     if ( $? == -1 )
+if ( $? == -1 )
 {
-     print "command failed: $!\n";
+    print "command failed: $!\n";
 }
 else
 {
-    printf "command exited with value %d", $? >> 8; 
+    printf "command exited with value %d", $? >> 8;
 }
+
+postdata($api,$channel,$message);
+
 
  print "</body>";
  print "</html>";
