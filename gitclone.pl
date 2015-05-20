@@ -144,7 +144,8 @@ if ( $buffer ne "" ) {
 # the apache user (apache, _www, _apache, or something) that probably doesn't have the rights to overwrite the current cgi-bin
 # contents with the new ones.
 
-# add channel icon
+print "user: " . system("`whoami`");
+
 system("/home/ec2-user/gitclone.sh");
 if ( $? == -1 )
 {
