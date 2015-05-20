@@ -9,6 +9,41 @@
 # require lwp;
 use LWP::UserAgent;
 
+sub postdata { # call with postdata(api,channel,message)
+    # channel is a string that represents the part of the URL that slack uses to determine the channel
+    # api is the static value of the slack api URL
+    # message is what you want to show up in the channel
+    my $channel = shift;
+    my $api = shift;
+    my $message = shift;
+    
+    if ($channelstr eq "" or $slack_api eq "" or $message eq "" ) {
+        die "missing parameters";
+    }
+    
+    my $handle = LWP::UserAgent->new;
+    
+    my $server_endpoint = "$api"."$channel";
+    
+    # set custom HTTP request header fields
+    
+    my $request = HTTP::Request->new(POST => $server_endpoint);
+    $request->header('content-type' => 'application/json');
+    
+    # add POST data to HTTP request body
+    my $post_data = '{' . "text" . ':' . $message . '}';
+    $request->content($post_data);
+    
+    my $resp = $ua->request($request);
+    if ($resp->is_success) {
+        my $response = $resp->decoded_content;
+        print "Received reply: $response\n";
+    }
+    else {
+        print "HTTP POST error code: ", $resp->code, "<br>\n";
+        print "HTTP POST error message: ", $resp->message, "<br>\n";
+    }
+}
 
 # the base URL defines the web server to whom to send the JSON messages
 # this is common among _all_ slack users
@@ -90,29 +125,7 @@ print "</table>";
 # at this point, all of the values have been placed into the same variables they were paired by (in lower case).
 #
 
-
-my $ua = LWP::UserAgent->new;
-
-my $server_endpoint = "$slack_api_url"."$general_channel";
-
-# set custom HTTP request header fields
-
-my $request = HTTP::Request->new(POST => $server_endpoint);
-$request->header('content-type' => 'application/json');
-
-# add POST data to HTTP request body
-my $post_data = '{ "text":"@pairs"}';
-$request->content($post_data);
-
-my $resp = $ua->request($request);
-if ($resp->is_success) {
-    my $message = $resp->decoded_content;
-    print "Received reply: $message\n";
-}
-else {
-    print "HTTP POST error code: ", $resp->code, "<br>\n";
-    print "HTTP POST error message: ", $resp->message, "<br>\n";
-}
+postdata($slack_api_url,$general_channel,"this is a test message");
 
 print "</body>";
 print "</html>";
