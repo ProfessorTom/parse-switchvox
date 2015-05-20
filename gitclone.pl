@@ -26,7 +26,7 @@ sub postdata { # call with postdata(api,channel,message)
     $request->header('content-type' => 'application/json'); # header data to define
     
     # add POST data to HTTP request body
-    my $post_data = '{"channel":"' . $channel . '","icon_emoji":":children_crossing:","text":"' . $message . '" }';
+    my $post_data = '{"channel":"' . $channel . '","username":"gitclone","icon_emoji":":children_crossing:","text":"' . $message . '" }';
 
     #DEBUG
     print $post_data."<br>\n";
