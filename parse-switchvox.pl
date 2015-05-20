@@ -136,7 +136,6 @@ if $event_type eq "incoming" {
     $message = "Incoming call from $caller_id_name ($caller_id_number)";
 }
 
+postdata($api,$channel,$message);
 #DEBUG print "</body>";
 #DEBUG print "</html>";
-
-
