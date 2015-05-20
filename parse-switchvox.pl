@@ -17,23 +17,19 @@ sub postdata { # call with postdata(api,channel,message)
     my $channel = shift;
     my $message = shift;
     
-    #    print $channel . "<br>\n"; # debug output
-    #print $api . "<br>\n"; ##
-    #print $message . "<br>\n"; ##
-    
     my $handle = LWP::UserAgent->new; # create a new object to reference
     
     my $server_endpoint = "$api"."$channel"; # define the full URL to which to POST
-    print $server_endpoint."<br>\n";
+    #DEBUG print $server_endpoint."<br>\n";
     
     # set custom HTTP request header fields
     my $request = HTTP::Request->new(POST => $server_endpoint); # object to add  data
     $request->header('content-type' => 'application/json'); # header data to define
-    print $request->header."<br>\n";
+    #DEBUG print $request->header."<br>\n";
     
     # add POST data to HTTP request body
     my $post_data = '{' . "text" . ':' . $message . '}'; # a string to use for the POST
-    print $post_data."<br>\n";
+    #DEBUG print $post_data."<br>\n";
     
     # actually connect to the URL and POST the data
     $request->content($post_data);
@@ -103,7 +99,7 @@ $req = $ENV{'REQUEST_METHOD'}; # =~ tr/a-z/A-Z/; # convert the text to all upper
 if ($req eq "GET") # if the method was a GET (we hope), then…
 {
     $buffer = $ENV{'QUERY_STRING'}; # read the values from the incoming URL
-}
+} else die "BAD FORMAT"
 
 # Split information into name/value pairs
 @pairs = split(/&/, $buffer); # break out each value pair into a member of the @pairs array
@@ -130,7 +126,7 @@ print "</table>";
 # at this point, all of the values have been placed into the same variables they were paired by (in lower case).
 #
 
-postdata($slack_api_url,$general_channel,$name."\t".$value);
+postdata($slack_api_url,$general_channel,"this is a test");
 
 print "</body>";
 print "</html>";
