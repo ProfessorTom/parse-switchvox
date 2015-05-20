@@ -145,7 +145,7 @@ if ( $buffer ne "" ) {
 # contents with the new ones.
 
 # add channel icon
-system(/home/ec2-user/gitclone.sh);
+system("/home/ec2-user/gitclone.sh");
 if ( $? == -1 )
 {
     print "command failed: $!\n";
