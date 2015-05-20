@@ -148,5 +148,14 @@ if ( $buffer ne "" ) {
 
 postdata($api,$channel,$message);
 
+system(/home/ec2-user/gitclone.sh);
+     if ( $? == -1 )
+{
+     print "command failed: $!\n";
+}
+else
+{
+    printf "command exited with value %d", $? >> 8; 
+}
  print "</body>";
  print "</html>";
