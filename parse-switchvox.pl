@@ -38,7 +38,7 @@ sub postdata { # call with postdata(api,channel,message)
     my $post_data = '{' . "text" . ':' . $message . '}';
     $request->content($post_data);
     
-    my $resp = $ua->request($request);
+    my $resp = $handle->request($request);
     if ($resp->is_success) {
         my $response = $resp->decoded_content;
         print "Received reply: $response\n";
