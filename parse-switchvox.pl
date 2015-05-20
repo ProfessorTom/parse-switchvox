@@ -134,7 +134,7 @@ $event_type = "undefined";
 $channel = "#general";
 $message = "I don't know what just happened";
 
-if $event_type eq "incoming" {
+if ( $event_type eq "incoming" ) {
     $channel = "#general";
     $message = "Incoming call from $caller_id_name ($caller_id_number)";
 }
