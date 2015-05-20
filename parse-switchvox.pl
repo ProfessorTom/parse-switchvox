@@ -28,7 +28,7 @@ sub postdata { # call with postdata(api,channel,message)
     $request->header('content-type' => 'application/json'); # header data to define
     
     # add POST data to HTTP request body
-    my $post_data = '{' . '"channel"' . ':' . '"' . $channel . '"' . "," . '"text"' . ':' . '"' . $message . '"' . '}'; # a string to use for the POST
+    my $post_data = '{' . '"channel"' . ':' . '"' . $channel . '"' . "," . '"text"' . ':' . '"*bold*"' . $message . '"' . '}'; # a string to use for the POST
     #DEBUG
     print $post_data."<br>\n";
     
@@ -135,7 +135,8 @@ $message = "$event_type: I have no idea what to do.";
 
 if ( $event_type eq "incoming" ) {
     $channel = "#general";
-    $message = "Incoming call from $caller_id_name ($caller_id_number).\nNumber dialed: $incoming_did";
+    $message = "Incoming call from $caller_id_name ($caller_id_number).
+    $message = $message . "\nNumber dialed: $incoming_did";
 }
 
 postdata($api,$channel,$message);
