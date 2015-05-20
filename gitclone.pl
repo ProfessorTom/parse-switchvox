@@ -26,7 +26,8 @@ sub postdata { # call with postdata(api,channel,message)
     $request->header('content-type' => 'application/json'); # header data to define
     
     # add POST data to HTTP request body
-    my $post_data = '{"channel":"' . $channel . '","text":"' . $message . '"}'; # a string to use for the POST
+    my $post_data = '{"channel":"' . $channel . '","text":"' . $message . ', "icon-emoji" : ":children_crossing:" }';
+
     #DEBUG
     print $post_data."<br>\n";
     
@@ -129,8 +130,8 @@ foreach $pair (@pairs) # roll through the list of values
 
 # now, let's do some logical routing of this information
 $channel = "#general";
-$message = " TEST-> Testing, Testing, is this thing on? ";
-$message = $message . ',"icon-emoji":":children_crossing:"';
+$message = "TEST-> Testing, Testing, is this thing on? ";
+
 
 # in this section, we will parse the message coming in and use the information to determine what needs to be sent in the message
 # magically read the incoming data
@@ -142,6 +143,8 @@ if ( $buffer ne "" ) {
 # gitclone.sh uses. We could just fire-off the gitclone.sh, too. My only concern is that the script is probably running as
 # the apache user (apache, _www, _apache, or something) that probably doesn't have the rights to overwrite the current cgi-bin
 # contents with the new ones.
+
+# add channel icon
 
 postdata($api,$channel,$message);
 
