@@ -17,9 +17,9 @@ sub postdata { # call with postdata(api,channel,message)
     my $api = shift;
     my $message = shift;
     
-    print $channel;
-    print $api;
-    print $message;
+    print $channel . "<br>\n";
+    print $api . "<br>\n";
+    print $message . "<br>\n";
     
     if ($channel eq "" or $api eq "" or $message eq "" ) {
         die "missing parameters";
