@@ -151,7 +151,7 @@ if ( $buffer ne "" ) {
 system("/bin/sh /home/ec2-user/gitclone.sh");
 if ( $? ne 0 )
 {
-    printf "command failed: %d : %n",$?,$!";
+    printf "command failed: %d : %n",$?,$! >> 8;
 }
 else
 {
