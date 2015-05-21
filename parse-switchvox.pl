@@ -113,7 +113,6 @@ foreach $pair (@pairs) # roll through the list of values
 $channel = "#general";
 $message = "Something odd happened.";
 $message = $message . "\n" . $ENV{"REMOTE_ADDR"};
-$message = $message . "\n" . $ENV{"REMOTE_HOST"};
 
 
 #DEBUG print $caller_id_name;
