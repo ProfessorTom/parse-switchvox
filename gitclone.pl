@@ -144,9 +144,9 @@ if ( $buffer ne "" ) {
 # the apache user (apache, _www, _apache, or something) that probably doesn't have the rights to overwrite the current cgi-bin
 # contents with the new ones.
 
-my $user = getpwuid $<;
+# my $user = getpwuid $<;
 
-$message = $message . " - User = $user";
+# $message = $message . " - User = $user";
 
 system("/home/ec2-user/gitclone.sh");
 if ( $? == -1 )
