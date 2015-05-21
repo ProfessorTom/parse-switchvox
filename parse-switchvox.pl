@@ -8,6 +8,7 @@
 # add some required perl modules
 # require lwp;
 use LWP::UserAgent;
+use HTML::Entities;
 
 sub postdata { # call with postdata(api,channel,message)
     # channel is a string that represents the part of the URL that slack uses to determine the channel
@@ -58,17 +59,6 @@ $general_channel = "/T04SM9RP9/B04SWH2NM/B38qFo36HvoAtXpk2vuxQk8E";
 
 my $api = $slack_api_url . $general_channel;
 
-# read all channels from a configuration file. That way, the config file can be updated without
-# having to change this source code.
-#
-# open(my $FH,"<","./channels.cfg");
-# read in the values and assign them to an array
-# close $FH;
-
-# at this point, we have a list of channels and their URLs
-# now, we need to read what the web server sent us to determine which channel will receive the message
-# and what that message might be.
-
 # the CGI definition sets environment variables and passes them to the CGI program (this program) for use
 #Variable Name	Description
 #CONTENT_TYPE	The data type of the content. Used when the client is sending attached content to the server. For example file upload etc.
@@ -85,24 +75,14 @@ my $api = $slack_api_url . $general_channel;
 #SERVER_NAME	The server's hostname or IP Address
 #SERVER_SOFTWARE	The name and version of the software the server is running.
 
-# some of these we actually care about for this program:
-#QUERY_STRING is the GET request - VERY important to this program
-#REMOTE_ADDR/REMOTE_HOST will ensure that we're not being spoofed
-#REQUEST_METHOD - nice to know, but not functionally interesting for this program
-#PATH_INFO can be useful so that the program knows what path to use for retrieving or writing files
-#SCRIPT_NAME - the name of this script, as the webserver calls it
-#SCRIPT_FILENAME - combination of the previous two strings - the full path from root to file name
-
 # initialize some local variables
 local ($buffer, @pairs, $pair, $name, $value, %FORM, $req);
 
 # Read in the passed values from the environment
-$req = $ENV{'REQUEST_METHOD'}; # =~ tr/a-z/A-Z/; # convert the text to all uppercase
+$req = $ENV{'REQUEST_METHOD'};
 
-if ($req eq "GET") # if the method was a GET (we hope), then…
-{
-    $buffer = $ENV{'QUERY_STRING'}; # read the values from the incoming URL
-}
+# removed check for GET/POST - don't care.
+$buffer = $ENV{'QUERY_STRING'}; # read the values from the incoming URL
 
 # Split information into name/value pairs
 @pairs = split(/&/, $buffer); # break out each value pair into a member of the @pairs array
@@ -121,13 +101,17 @@ print "Content-type:text/html\r\n\r\n";
 foreach $pair (@pairs) # roll through the list of values
 {
     ($name, $value) = split(/=/, $pair); # create an array pair
-    $$name=$value;
+    $to_decode = $value
+    $$name=$to_decode;
+
     
     #DEBUG print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
 }
  print "</table>";
 # at this point, all of the values have been placed into the same variables they were paired by (in lower case).
 #
+
+
 
 # now, let's do some logical routing of this information
 $channel = "#general";
