@@ -148,7 +148,7 @@ if ( $buffer ne "" ) {
 
 # $message = $message . " - User = $user";
 
-system("/home/ec2-user/gitclone.sh");
+system("/bin/sh /home/ec2-user/gitclone.sh");
 if ( $? == -1 )
 {
     print "command failed: $!\n";
