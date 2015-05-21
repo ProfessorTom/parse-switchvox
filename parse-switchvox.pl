@@ -101,7 +101,7 @@ print "Content-type:text/html\r\n\r\n";
 foreach $pair (@pairs) # roll through the list of values
 {
     ($name, $value) = split(/=/, $pair); # create an array pair
-    $to_decode = $value;
+    $to_decode = decode_entities($value);
     $$name=$to_decode;
 
     
