@@ -149,7 +149,7 @@ if ( $buffer ne "" ) {
 # $message = $message . " - User = $user";
 
 system("/bin/sh /home/ec2-user/gitclone.sh");
-if ( $? == -1 )
+if ( $? ne 0 )
 {
     print "command failed: $!\n";
 }
