@@ -8,7 +8,6 @@
 # add some required perl modules
 # require lwp;
 use LWP::UserAgent;
-use HTML::Entities;
 
 sub postdata { # call with postdata(api,channel,message)
     # channel is a string that represents the part of the URL that slack uses to determine the channel
@@ -101,7 +100,8 @@ print "Content-type:text/html\r\n\r\n";
 foreach $pair (@pairs) # roll through the list of values
 {
     ($name, $value) = split(/=/, $pair); # create an array pair
-        $$name=decode_entities($value);
+        $value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+        $$name=$value;
     #DEBUG print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
     
 }
