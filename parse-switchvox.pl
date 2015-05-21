@@ -101,25 +101,23 @@ print "Content-type:text/html\r\n\r\n";
 foreach $pair (@pairs) # roll through the list of values
 {
     ($name, $value) = split(/=/, $pair); # create an array pair
-    $to_decode = decode_entities($value);
-    $$name=$to_decode;
-
-    
+        $$name=decode_entities($value);
     #DEBUG print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
+    
 }
  print "</table>";
 # at this point, all of the values have been placed into the same variables they were paired by (in lower case).
 #
 
-
-
 # now, let's do some logical routing of this information
 $channel = "#general";
 $message = "$event_type: Testing, Testing, is this thing on?";
 
+print $caller_id_name;
+
 if ( $event_type eq "incoming" ) {
     $channel = "#general";
-    $message = "*Incoming* *call* *from* *$caller_id_name* (_$caller_id_number _)";
+    $message = "*Incoming* *call* *from* *${caller_id_name}* (_${caller_id_number}_)";
     $message = $message . '\nNumber dialed:' . "$incoming_did";
 }
 
