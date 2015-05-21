@@ -87,7 +87,7 @@ $buffer = $ENV{'QUERY_STRING'}; # read the values from the incoming URL
 @pairs = split(/&/, $buffer); # break out each value pair into a member of the @pairs array
 
 # so that we can see the results on the web browser (during testing)
-print "Content-type:text/html\r\n\r\n";
+ print "Content-type:text/html\r\n\r\n";
  print "<html>";
  print "<head>";
  print "<title>values</title>";
@@ -105,27 +105,31 @@ foreach $pair (@pairs) # roll through the list of values
     #DEBUG print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
     
 }
- print "</table>";
+  print "</table>";
 # at this point, all of the values have been placed into the same variables they were paired by (in lower case).
 #
 
 # now, let's do some logical routing of this information
 $channel = "#general";
-$message = "$event_type: Testing, Testing, is this thing on?";
+$message = "I don\'t know what happened.";
+$message = $message . "\n" . $ENV("REMOTE_ADDR");
+$message = $message . "\n" . $ENV("REMOTE_HOST");
 
-print $caller_id_name;
+
+#DEBUG print $caller_id_name;
 
 if ( $event_type eq "incoming" ) {
-    $channel = "#general";
-    $message = "*Incoming* *call* *from* *${caller_id_name}* (_${caller_id_number}_)";
-    $message = $message . '\nNumber dialed:' . "$incoming_did";
+        $channel = "#general";
+        $message = "*Incoming* *call* *from* *${caller_id_name}* (_${caller_id_number}_)";
+        $message = $message . '\nNumber dialed:' . "$incoming_did";
 }
 
 if ( $event_type eq "answered" ) {
-    $channel = "#general";
-    $message = "*Call* *from* *$caller_id_name* (_$caller_id_number _)";
-    $message = $message . '\nAnswered by:' . "$extension";
+        $channel = "#general";
+        $message = "*Call* *from* *${caller_id_name}* (_${caller_id_number}_)";
+        $message = $message . '\nAnswered by: ' . "_${extension}_";
 }
+
 postdata($api,$channel,$message);
 
  print "</body>";
