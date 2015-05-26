@@ -125,7 +125,7 @@ if ( $event_type eq "incoming" ) {
 
 
 if ( $event_type eq "answered" ) {
-    if ( ${extension} eq "s" ) {
+    if ( ${extension} eq "s" ) {     # "s" was what registered as the extension on outgoing calls. This prevents a message being sent to slack on outgoing calls.
         exit
     }
         $channel = "#general";
