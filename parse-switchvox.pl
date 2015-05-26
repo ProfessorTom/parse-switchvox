@@ -123,7 +123,11 @@ if ( $event_type eq "incoming" ) {
         $message = $message . '\nNumber dialed:' . "$incoming_did";
 }
 
+
 if ( $event_type eq "answered" ) {
+    if ( ${extension} eq "s" ) {
+        exit
+    }
         $channel = "#general";
         $message = "*Call* *from* *${caller_id_name}* (_${caller_id_number}_)";
         $message = $message . '\nAnswered by: ' . "_${extension}_";
