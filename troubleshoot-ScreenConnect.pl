@@ -111,8 +111,9 @@ foreach $pair (@pairs) # roll through the list of values
 
 # now, let's do some logical routing of this information
 $channel = "#programming";
-$message = "Something odd happened.";
-$message = $message . "\n" . $ENV{"REMOTE_ADDR"};
+$token = "xoxb-5102788457-RR873gucRQPo82t4Pd7BtmA5"
+$message = $ENV{'QUERY_STRING'};
+#$message = $message . "\n" . $ENV{"REMOTE_ADDR"};
 
 
 #DEBUG print $caller_id_name;
@@ -133,7 +134,7 @@ $message = $message . "\n" . $ENV{"REMOTE_ADDR"};
 #        $message = $message . '\nAnswered by: ' . "_${extension}_";
 #}
 
-postdata($api,$channel,$message);
+postdata($api,$token,$channel,$message);
 
  print "</body>";
  print "</html>";
