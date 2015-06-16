@@ -119,7 +119,7 @@ $message = $message . "\n" . $ENV{"REMOTE_ADDR"};
 
 if ( $event_type eq "incoming" ) {
         $channel = "#general";
-        $message = "*Incoming* *call* *from* *${caller_id_name}* (_${caller_id_number}_)";
+        $message = "*Incoming* *call* *from* *${caller_id_name}* ${caller_id_number}";
         $message = $message . '\nNumber dialed:' . "$incoming_did";
 }
 
@@ -129,7 +129,7 @@ if ( $event_type eq "answered" ) {
         exit
     }
         $channel = "#general";
-        $message = "*Call* *from* *${caller_id_name}* (_${caller_id_number}_)";
+        $message = "*Call* *from* *${caller_id_name}* ${caller_id_number}";
         $message = $message . '\nAnswered by: ' . "_${extension}_";
 }
 
