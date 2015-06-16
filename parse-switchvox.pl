@@ -114,12 +114,21 @@ $channel = "#general";
 $message = "Something odd happened.";
 $message = $message . "\n" . $ENV{"REMOTE_ADDR"};
 
+# Parse Caller ID Number to include Dashes
+$number = ${caller_id_number};
+
+$split1 = substr($number,0,3);
+$split2 = substr($number,3,3);
+$split3 = substr($number,6,4);
+
+$number = "$split1-$split2-$split3";
+
 
 #DEBUG print $caller_id_name;
 
 if ( $event_type eq "incoming" ) {
         $channel = "#general";
-        $message = "*Incoming* *call* *from* *${caller_id_name}* ${caller_id_number}";
+        $message = "*Incoming* *call* *from* *${caller_id_name}* $number";
         $message = $message . '\nNumber dialed:' . "$incoming_did";
 }
 
@@ -129,7 +138,7 @@ if ( $event_type eq "answered" ) {
         exit
     }
         $channel = "#general";
-        $message = "*Call* *from* *${caller_id_name}* ${caller_id_number}";
+        $message = "*Call* *from* *${caller_id_name}* $number";
         $message = $message . '\nAnswered by: ' . "_${extension}_";
 }
 
