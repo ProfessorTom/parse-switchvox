@@ -167,7 +167,7 @@ $number = "$split1-$split2-$split3";
 
 if ( $event_type eq "incoming" ) {
         $channel = "#general";
-        $message = "*Incoming* *call* *from* *${caller_id_name}* $number";
+        $message = "Incoming call from ${caller_id_name} $number";
         $message = $message . '\nNumber dialed:' . "$incoming_did";
 }
 
@@ -177,8 +177,8 @@ if ( $event_type eq "answered" ) {
         exit
     }
         $channel = "#general";
-        $message = "*Call* *from* *${caller_id_name}* $number";
-        $message = $message . '\nAnswered by: ' . "_${extension}_";
+        $message = "Call from ${caller_id_name} $number";
+        $message = $message . '\nAnswered by: ' . "${extension}";
 }
 
 postslack($message);
