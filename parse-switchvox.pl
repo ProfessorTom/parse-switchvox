@@ -9,10 +9,10 @@
 # require lwp;
 use LWP::UserAgent;
 
-sub postslack { # call with postslack(message)
-    # channel is a string that represents the part of the URL that slack uses to determine the channel
-    # api is the static value of the slack api URL
+sub postslack {
+    # call with postslack($message)
     # message is what you want to show up in the channel
+    my $message = "sdjiflsjdfklsdjf"
     my $message = shift;
 
     # the base URL defines the web server to whom to send the JSON messages
