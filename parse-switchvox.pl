@@ -57,6 +57,12 @@ sub postslack {
     
 }
 
+sub posthip {
+    # call with posthip($message)
+    my $message = shift;
+
+}
+
 # the CGI definition sets environment variables and passes them to the CGI program (this program) for use
 #Variable Name	Description
 #CONTENT_TYPE	The data type of the content. Used when the client is sending attached content to the server. For example file upload etc.
