@@ -182,6 +182,7 @@ if ( $event_type eq "answered" ) {
 }
 
 postslack($message);
+posthip($message);
 
  print "</body>";
  print "</html>";
