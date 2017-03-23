@@ -101,7 +101,7 @@ foreach $pair (@pairs) # roll through the list of values
     ($name, $value) = split(/=/, $pair); # create an array pair
         $value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
         $$name=$value;
-    #DEBUG print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
+    DEBUG print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
     
 }
   print "</table>";
