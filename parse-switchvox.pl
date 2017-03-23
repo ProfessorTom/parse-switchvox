@@ -141,7 +141,7 @@ if ( $event_type eq "answered" ) {
         $message = $message . '\nAnswered by: ' . "_${extension}_";
 }
 
-postslack($api,$channel,$message);
+postslack($message);
 
  print "</body>";
  print "</html>";
