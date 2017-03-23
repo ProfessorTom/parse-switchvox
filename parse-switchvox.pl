@@ -9,14 +9,24 @@
 # require lwp;
 use LWP::UserAgent;
 
-sub postdata { # call with postdata(api,channel,message)
+sub postslack { # call with postslack(message)
     # channel is a string that represents the part of the URL that slack uses to determine the channel
     # api is the static value of the slack api URL
     # message is what you want to show up in the channel
-    my $api = shift;
-    my $channel = shift;
     my $message = shift;
+
+    # the base URL defines the web server to whom to send the JSON messages
+    # this is common among _all_ slack users
+    my $slack_api_url = "https://hooks.slack.com/services";
     
+    # Define the channels to which messages will be sent.
+    # the <name>_channel will be appended to the slack_api_url, defined above
+    # for testing, this channel has been defined for novation systems general channel
+    my $general_channel = "/T04SM9RP9/B04SWH2NM/B38qFo36HvoAtXpk2vuxQk8E";
+    
+    my $api = $slack_api_url . $general_channel;
+    
+
     my $handle = LWP::UserAgent->new; # create a new object to reference
     
     my $server_endpoint = "$api"; # define the full URL to which to POST
@@ -46,17 +56,6 @@ sub postdata { # call with postdata(api,channel,message)
     }
     
 }
-
-# the base URL defines the web server to whom to send the JSON messages
-# this is common among _all_ slack users
-$slack_api_url = "https://hooks.slack.com/services";
-
-# Define the channels to which messages will be sent.
-# the <name>_channel will be appended to the slack_api_url, defined above
-# for testing, this channel has been defined for novation systems general channel
-$general_channel = "/T04SM9RP9/B04SWH2NM/B38qFo36HvoAtXpk2vuxQk8E";
-
-my $api = $slack_api_url . $general_channel;
 
 # the CGI definition sets environment variables and passes them to the CGI program (this program) for use
 #Variable Name	Description
@@ -142,7 +141,7 @@ if ( $event_type eq "answered" ) {
         $message = $message . '\nAnswered by: ' . "_${extension}_";
 }
 
-postdata($api,$channel,$message);
+postslack($api,$channel,$message);
 
  print "</body>";
  print "</html>";
