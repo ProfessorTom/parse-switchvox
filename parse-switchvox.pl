@@ -60,6 +60,40 @@ sub postslack {
 sub posthip {
     # call with posthip($message)
     my $message = shift;
+    # curl -d '{"color":"green","message":"My first notification (yey)","notify":false,"message_format":"text"}' -H 'Content-Type: application/json' https://chat.novationsys.com/v2/room/1/notification?auth_token=CuswLbN2WOQNxnNY3FzCKuEKxNGDkNiInDYNE4hd
+    
+    # the base URL defines the web server to whom to send the JSON messages
+    # this is common among _all_ slack users
+    my $api = "https://chat.novationsys.com/v2/room/1/notification?auth_token=CuswLbN2WOQNxnNY3FzCKuEKxNGDkNiInDYNE4hd";
+    
+    my $handle = LWP::UserAgent->new; # create a new object to reference
+    
+    my $server_endpoint = "$api"; # define the full URL to which to POST
+    #DEBUG
+    print $server_endpoint."<br>\n";
+    
+    # set custom HTTP request header fields
+    my $request = HTTP::Request->new(POST => $server_endpoint); # object to add  data
+    $request->header('content-type' => 'application/json'); # header data to define
+    
+    # add POST data to HTTP request body
+    my $post_data = '{"color":"green","message":'.$message.',"notify":false,"message_format":"text"}'; # a string to use for the POST
+    #DEBUG
+    print $post_data."<br>\n";
+    
+    # actually connect to the URL and POST the data
+    $request->content($post_data);
+    
+    my $resp = $handle->request($request); # let's find out what happened
+    if ($resp->is_success) { # if the code was a 200 or a handful of 400's, then
+        my $response = $resp->decoded_content;
+        print "Received reply: $response\n"; # report the successful code
+    }
+    else {
+        print "HTTP POST error code: ", $resp->code, "<br>\n"; # bad news! a 100, 300, 500 or some 400's
+        print "HTTP POST error message: ", $resp->message, "<br>\n";
+    }
+    
 
 }
 
