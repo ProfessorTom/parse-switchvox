@@ -12,7 +12,7 @@ use LWP::UserAgent;
 sub postslack {
     # call with postslack($message)
     # message is what you want to show up in the channel
-    my $message = "sdjiflsjdfklsdjf"
+    my $message = "sdjiflsjdfklsdjf";
     my $message = shift;
 
     # the base URL defines the web server to whom to send the JSON messages
@@ -101,7 +101,7 @@ foreach $pair (@pairs) # roll through the list of values
     ($name, $value) = split(/=/, $pair); # create an array pair
         $value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
         $$name=$value;
-    DEBUG print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
+     print "<tr><td>"."$name"."</td><td>"."$value"."</td></tr>\n";
     
 }
   print "</table>";
