@@ -112,7 +112,7 @@ sub postTeams {
     $request->header('content-type' => 'application/json'); # header data to define
 
 # add POST data to HTTP request body
-    my $post_data = '{"color":"green","message":"<B>' . $message . '</B>","notify":true,"message_format":"html"}'; # a string to use for the POST
+    my $post_data = '{"text":"<B>' . $message . '</B>"}'; # a string to use for the POST
 #DEBUG
     print $post_data."<br>\n";
 
