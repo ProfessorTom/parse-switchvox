@@ -198,7 +198,7 @@ $split1 = substr($number,0,3);
 $split2 = substr($number,3,3);
 $split3 = substr($number,6,4);
 
-$number = "$split1-$split2-$split3";
+$number = "$split1\-$split2\-$split3";
 
 
 #DEBUG print $caller_id_name;
