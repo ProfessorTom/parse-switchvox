@@ -192,7 +192,7 @@ $message = "Something odd happened.";
 $message = $message . "\n" . $ENV{"REMOTE_ADDR"};
 
 # Parse Caller ID Number to include Dashes
-$number = ${caller_id_number};
+$number = " " . ${caller_id_number} . " ";
 
 $split1 = substr($number,0,3);
 $split2 = substr($number,3,3);
