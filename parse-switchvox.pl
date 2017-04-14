@@ -212,8 +212,8 @@ if ( $event_type eq "answered" ) {
         exit
     }
         $channel = "#general";
-        $message = "Call from ${caller_id_name} $number";
-        $message = $message . '\nAnswered by: ' . "${extension}";
+        $message = "Call from ${caller_id_name} $number.";
+        $message = $message . "<Br>Answered by: " . $extension;
 }
 
 #postslack($message);
