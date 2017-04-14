@@ -105,7 +105,7 @@ sub postTeams {
     my $handle = LWP::UserAgent->new;
     my $server_endpoint=$api;
     my $request=HTTP::Request->new(POST => $server_endpoint);
-    print $server_endpoint."<br>\n";
+    print "<text color=red>Server URL: <text color=black>" . $server_endpoint."<P>\n";
 
     # set custom HTTP request header fields
     my $request = HTTP::Request->new(POST => $server_endpoint); # object to add  data
@@ -114,7 +114,7 @@ sub postTeams {
 # add POST data to HTTP request body
     my $post_data = '{"text":"' . $message . '"}'; # a string to use for the POST
 #DEBUG
-    print "What I sent: " . $post_data."<P>\n";
+    print "<text color=red>What I sent: <text color=black>" . $post_data."<P>\n";
 
 # actually connect to the URL and POST the data
     $request->content($post_data);
