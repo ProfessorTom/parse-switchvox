@@ -112,8 +112,11 @@ sub postTeams {
     $request->header('Content-type' => 'application/json'); # header data to define
 
 # add POST data to HTTP request body
-    my $post_data = '{"title":"PBX Message",';
-    $post_data = $post_data . '{"text":"' . $message . '"}'; # a string to use for the POST
+    my $post_data = '{
+    $post_data = $post_data . "title":"PBX Message",';
+    $post_data = $post_data . '"text":"' . $message . '"'; # a string to use for the POST
+    $post_data = $post_data . '}';
+    
 #DEBUG
     print "<b>What I am sending: </b><i>" . $post_data . "<P></i>\n";
 
