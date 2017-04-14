@@ -203,7 +203,7 @@ $number = "$split1-$split2-$split3";
 if ( $event_type eq "incoming" ) {
         $channel = "#general";
         $message = "Incoming call from ${caller_id_name} $number";
-        $message = $message . '\nNumber dialed:' . "$incoming_did";
+        $message = $message . '<Br>Number dialed:' . "$incoming_did";
 }
 
 
