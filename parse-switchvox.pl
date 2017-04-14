@@ -97,6 +97,39 @@ sub posthip {
 
 }
 
+sub postTeams {
+# call with postTeams($message)
+    my $message = shift;
+    my $api = "https://outlook.office.com/webhook/3264b3c1-43a5-44fb-89d5-a43cea7a9827@760e73b3-c900-465f-886b-563bf8055980/IncomingWebhook/111fa0d3a66e41eda1a7f44e59e330fc/9a98a86d-9de9-4cdf-a06c-96f691370682";
+    my $handle = LWP::UserAgent->new;
+    my $server_endpoint=$api;
+    my $request=HTTP::Request->new(POST => $server_endpoint);
+    print $server_endpoint."<br>\n";
+
+    # set custom HTTP request header fields
+    my $request = HTTP::Request->new(POST => $server_endpoint); # object to add  data
+    $request->header('content-type' => 'application/json'); # header data to define
+
+# add POST data to HTTP request body
+    my $post_data = '{$message}'; # a string to use for the POST
+#DEBUG
+    print $post_data."<br>\n";
+
+# actually connect to the URL and POST the data
+    $request->content($post_data);
+
+    my $resp = $handle->request($request); # let's find out what happened
+    if ($resp->is_success) { # if the code was a 200 or a handful of 400's, then
+        my $response = $resp->decoded_content;
+        print "Received reply: $response\n"; # report the successful code
+    } else {
+        print "HTTP POST error code: ", $resp->code, "<br>\n"; # bad news! a 100, 300, 500 or some 400's
+        print "HTTP POST error message: ", $resp->message, "<br>\n";
+    }
+}
+
+
+
 # the CGI definition sets environment variables and passes them to the CGI program (this program) for use
 #Variable Name	Description
 #CONTENT_TYPE	The data type of the content. Used when the client is sending attached content to the server. For example file upload etc.
@@ -181,8 +214,9 @@ if ( $event_type eq "answered" ) {
         $message = $message . '\nAnswered by: ' . "${extension}";
 }
 
-postslack($message);
-posthip($message);
+#postslack($message);
+#posthip($message);
+postTeams($message);
 
  print "</body>";
  print "</html>";
