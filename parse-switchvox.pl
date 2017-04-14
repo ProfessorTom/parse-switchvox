@@ -102,7 +102,7 @@ sub postTeams {
     #    print "sending to Teams";
     my $message = shift;
     print "<b>Message: </b><i>" . $message . "</i><P>";
-    my $api = 'https://outlook.office.com/webhook/3264b3c1-43a5-44fb-89d5-a43cea7a9827@760e73b3-c900-465f-886b-563bf8055980/IncomingWebhook/111fa0d3a66e41eda1a7f44e59e330fc/9a98a86d-9de9-4cdf-a06c-96f691370682;
+    my $api = 'https://outlook.office.com/webhook/3264b3c1-43a5-44fb-89d5-a43cea7a9827@760e73b3-c900-465f-886b-563bf8055980/IncomingWebhook/111fa0d3a66e41eda1a7f44e59e330fc/9a98a86d-9de9-4cdf-a06c-96f691370682';
     my $handle = LWP::UserAgent->new;
     my $request=HTTP::Request->new(POST => $api);
     print "<b>Server URL: </b><i>" . $api ."</i><P>\n";
