@@ -109,7 +109,7 @@ sub postTeams {
 
     # set custom HTTP request header fields
     my $request = HTTP::Request->new(POST => $api); # object to add  data
-    $request->header('content-type' => 'application/json'); # header data to define
+    $request->header('Content-type' => 'application/json'); # header data to define
 
 # add POST data to HTTP request body
     my $post_data = '{"text":"' . $message . '"}'; # a string to use for the POST
